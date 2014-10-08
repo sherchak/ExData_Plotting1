@@ -1,0 +1,15 @@
+filename<-"household_power_consumption.txt"
+data<-read.table(filename,sep=";")
+subsetData<-data[data[,1]=="1/2/2007"|data[,1]=="2/2/2007",]
+par(mfrow=c(2,2))
+plot(as.numeric(as.character(subsetData[,3])),type="l",xaxt="n",xlab="", ylab="Global Active Power (kilowatts)")
+axis(side=1,at=c(1,1440,2880),labels=c("Thu","Fri","Sat"))
+plot(as.numeric(as.character(subsetData[,5])),type="l",xaxt="n",xlab="datetime", ylab="Voltage")
+axis(side=1,at=c(1,1440,2880),labels=c("Thu","Fri","Sat"))
+plot(as.numeric(as.character(subsetData[,7])),type="l",xaxt="n",xlab="", ylab="Energy sub metering")
+axis(side=1,at=c(1,1440,2880),labels=c("Thu","Fri","Sat"))
+lines(as.numeric(as.character(subsetData[,8])),col="red")
+lines(as.numeric(as.character(subsetData[,9])),col="blue")
+legend(x="topright",c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), cex=0.25,pt.cex=cex,bty="n",col=c("black","red","blue"),lty=1)
+plot(as.numeric(as.character(subsetData[,4])),type="l",xaxt="n",xlab="datetime", ylab="Global_reactive_power")
+axis(side=1,at=c(1,1440,2880),labels=c("Thu","Fri","Sat"))
